@@ -176,6 +176,7 @@ class FluentSender(object):
             bytes_ = self.pendings
 
         try:
+            logging.info("Sending {} bytes".format(len(bytes_)))
             self._send_data(bytes_)
 
             # send finished
@@ -183,6 +184,7 @@ class FluentSender(object):
 
             return True
         except socket.error as e:
+            logging.error(e)
             LOGGER.debug("Error while sending data: {}".format(repr(e)))
             self.last_error = e
 
@@ -204,6 +206,7 @@ class FluentSender(object):
             try:
                 recvd = self.socket.recv(4096)
             except socket.error as recv_e:
+                logging.error(recv_e)
                 if recv_e.errno not in [errno.EWOULDBLOCK, errno.ENOENT]:
                     raise
                 return
@@ -225,6 +228,8 @@ class FluentSender(object):
             if sent == 0:
                 raise socket.error(errno.EPIPE, "Broken pipe")
             LOGGER.debug("Sent {} bytes".format(str(sent)))
+            logging.info("Sent {} bytes".format(str(sent)))
+
             bytes_sent += sent
         self._check_recv_side()
 
@@ -252,6 +257,7 @@ class FluentSender(object):
                     # sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
                     sock.connect((self.host, self.port))
             except Exception as e:
+                logging.error(e)
                 global _exceptions_logged
                 if _exceptions_logged < MAX_EXCEPTIONS_TO_LOG:
                     LOGGER.error(
