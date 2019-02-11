@@ -233,7 +233,7 @@ class FluentSender(object):
                     sock = self._wrap_sock_with_ssl(sock)
                     sock.settimeout(self.timeout)
                     # This might be controversial and may need to be removed
-                    sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+                    # sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
                     sock.connect((self.host, self.port))
             except Exception as e:
                 global _exceptions_logged
