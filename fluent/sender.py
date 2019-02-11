@@ -103,6 +103,7 @@ class FluentSender(object):
             bytes_ = self._make_packet(label, timestamp, data)
         except Exception as e:
             self.last_error = e
+            LOGGER.error("Cannot build a packet due to: {}", e.message)
             bytes_ = self._make_packet(
                 label, timestamp, {
                     "level": "CRITICAL",
@@ -238,7 +239,7 @@ class FluentSender(object):
             except Exception as e:
                 global _exceptions_logged
                 if _exceptions_logged < MAX_EXCEPTIONS_TO_LOG:
-                    LOGGER.debug(
+                    LOGGER.error(
                         "Exception while connecting to socket: {}".format(
                             repr(e)))
                     _exceptions_logged += 1
