@@ -14,7 +14,7 @@ try:
 except NameError:  # pragma: no cover
     basestring = (str, bytes)
 
-from fluent import sender
+from logsensefluent import sender
 
 
 class FluentRecordFormatter(logging.Formatter, object):

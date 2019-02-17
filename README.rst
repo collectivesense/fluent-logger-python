@@ -21,8 +21,11 @@ log forwarding, etc.
 **fluent-logger-python** is a Python library, to record the events from
 Python application.
 
-NOTE: This is a fork of https://github.com/fluent/fluent-logger-python, it only
-adds TLS capability to the original package.
+NOTE: This is a fork of https://github.com/itaiMona/fluent-logger-python which is based on
+https://github.com/fluent/fluent-logger-python and adds TLS capability to the original package.
+This fork improves handling of some datatypes and hopefully soon will include a set
+of changes that could be merged into the main package to avoid confusion.
+
 
 Requirements
 ------------

@@ -11,17 +11,15 @@ README = path.abspath(path.join(path.dirname(__file__), 'README.rst'))
 desc = 'A Python logging handler for Fluentd event collector'
 
 setup(
-    name='mona-fluent-logger',
-    version='0.0.5',
+    name='logsense-fluent-logger',
+    version='0.0.6',
     description=desc,
     long_description=open(README).read(),
-    package_dir={'fluent': 'fluent'},
-    packages=['fluent'],
+    package_dir={'logsensefluent': 'fluent'},
+    packages=['logsensefluent'],
     install_requires=['msgpack'],
-    author='itaiMona',
-    author_email='itai@monalabs.io',
-    url='https://github.com/itaiMona/fluent-logger-python',
-    download_url='http://pypi.python.org/pypi/mona-fluent-logger/',
+    url='https://github.com/collectivesense/fluent-logger-python',
+    download_url='http://pypi.python.org/pypi/logsense-fluent-logger/',
     license='Apache License, Version 2.0',
     classifiers=[
         'Programming Language :: Python :: 2',

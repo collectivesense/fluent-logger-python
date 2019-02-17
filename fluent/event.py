@@ -2,7 +2,7 @@
 
 import time
 
-from fluent import sender
+from logsensefluent import sender
 
 
 class Event(object):
