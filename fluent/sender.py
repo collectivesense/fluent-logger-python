@@ -138,27 +138,12 @@ class FluentSender(object):
             self._close()
             self.pendings = None
 
-    def _convert_value_to_known_type(self, value):
-        if isinstance(value, str):
-            return value
-        elif isinstance(value, int):
-            return value
-        elif isinstance(value, float):
-            return value
-        elif isinstance(value, dict):
-            return value
-        elif isinstance(value, list):
-            return value
-        else:
-            return str(value)
-
     def _make_packet(self, label, timestamp, data):
         if label:
             tag = '.'.join((self.tag, label))
         else:
             tag = self.tag
-        converted_data = {key: self._convert_value_to_known_type(value) for key, value in data.items()}
-        packet = (tag, timestamp, converted_data)
+        packet = (tag, timestamp, data)
         if self.verbose:
             print(packet)
         return msgpack.packb(packet, **self.msgpack_kwargs)
